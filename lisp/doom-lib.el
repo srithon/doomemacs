@@ -258,7 +258,8 @@ TRIGGER-HOOK is a list of quoted hooks and/or sharp-quoted functions."
               (setq running? t)  ; prevent infinite recursion
               (doom-run-hooks hook-var)
               (set hook-var nil))))
-      (cond ((daemonp)
+      (cond ((and (daemonp) (or (not (boundp '*doom-daemon-load-eagerly))
+                                *doom-daemon-load-eagerly))
              ;; In a daemon session we don't need all these lazy loading
              ;; shenanigans. Just load everything immediately.
              (add-hook 'after-init-hook fn 'append))

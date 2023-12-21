@@ -42,6 +42,7 @@
   (setq init-file-debug t
         debug-on-error t))
 
+(setq *doom-daemon-load-eagerly nil)
 
 ;;
 ;;; Bootstrap
